@@ -154,8 +154,8 @@ def testloop(sec_to_test, sec_counter, wd_counter, running):
     print("Average collisions per seconds: {}".format(wd_counter / max(sec_counter, 1)))
 
 
-#------you can change the speed of human in the parameter of line 171 instantiate_human() method calling
-#------you can change the testing seconds in the first parameter of line 174 testloop() method calling
+#------you can change the speed of human in the parameter of line 161 instantiate_human() method calling
+#------you can change the testing seconds in the first parameter of line 164 testloop() method calling
 
 # create an instance of human: instantiate_human(speed)
 instantiate_human(10)
