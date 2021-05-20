@@ -1,6 +1,7 @@
 import pygame
 import random
 
+
 # constants
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 500
@@ -54,7 +55,6 @@ class WaterDrop(pygame.sprite.Sprite):
             self.kill()
 
 
-
 # init pygame lib
 pygame.init()
 
@@ -66,6 +66,7 @@ screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 # create a custom event for adding waterdrops
 ADD_WATERDROP = pygame.USEREVENT + 1
 pygame.time.set_timer(ADD_WATERDROP, 1)
+
 
 # create a custom event for counting seconds
 ADD_SECONDS = pygame.USEREVENT + 2
@@ -89,9 +90,6 @@ def instantiate_human(speed):
 # setup the clock for framerates
 clock = pygame.time.Clock()
 
-# run until esc hit
-running = True
-
 
 def testloop(sec_to_test, sec_counter, wd_counter, running):
 
@@ -113,12 +111,9 @@ def testloop(sec_to_test, sec_counter, wd_counter, running):
             if event.type == ADD_SECONDS:
                 sec_counter += 1
 
-
-
         # update the human sprite & the waterdrops
         human.update()
         waterdrops.update()
-
 
         # fill the background
         screen.fill((0, 0, 0))
@@ -127,7 +122,6 @@ def testloop(sec_to_test, sec_counter, wd_counter, running):
         for entity in all_sprites:
             screen.blit(entity.surf, entity.rect)
 
-
         # check collisions
         if pygame.sprite.spritecollideany(human, waterdrops):
             pygame.sprite.spritecollideany(human, waterdrops).rect.top = SCREEN_HEIGHT
@@ -135,13 +129,11 @@ def testloop(sec_to_test, sec_counter, wd_counter, running):
             all_sprites.remove(pygame.sprite.spritecollideany(human,waterdrops))
             wd_counter += 1
 
-
         # text surface object
         text = font.render("Waterdops collided: {}".format(wd_counter), True, (255, 255, 255))
         text2 = font.render("Seconds: {}".format(sec_counter), True, (255, 255, 255))
         screen.blit(text,(5, 5))
         screen.blit(text2,(5, 25))
-
 
         # flip the display
         pygame.display.flip()
@@ -152,14 +144,7 @@ def testloop(sec_to_test, sec_counter, wd_counter, running):
         # quit after 30 seconds
         if sec_counter == sec_to_test:
             running = False
-
-    # end of loop
-    screen.fill((0, 0, 0))
-    pygame.display.flip()
-    screen.fill((0, 0, 0))
-    pygame.display.flip()
-    screen.fill((0, 0, 0))
-    pygame.display.flip()
+    #---------end of loop---------#
 
     # statistics
     print("\n---------STATISTICS---------")
@@ -169,8 +154,8 @@ def testloop(sec_to_test, sec_counter, wd_counter, running):
     print("Average collisions per seconds: {}".format(wd_counter / max(sec_counter, 1)))
 
 
-
-
+#------you can change the speed of human in the parameter of line 171 instantiate_human() method calling
+#------you can change the testing seconds in the first parameter of line 174 testloop() method calling
 
 # create an instance of human: instantiate_human(speed)
 instantiate_human(10)
@@ -178,14 +163,4 @@ instantiate_human(10)
 # calling the test function: testloop(sec_to_test, sec_counter, wd_counter)
 testloop(10, 0, 0, True)
 
-
-
 pygame.quit()
-
-
-
-
-
-
-
-
